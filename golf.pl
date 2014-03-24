@@ -5,20 +5,21 @@ use warnings;
 
 
 my (@wordlist,@nomatch,@scores,$continue,$state);
-
-print "\n\nHello Choose One:\n\n[1]Lessons\n[2]Game\n[3]Exit\n\nPlease Enter a Selection:";
+my $menu ="\n\nHello Choose One:\n\n[1]Lessons\n[2]Game\n[3]Exit\n\nPlease Enter a Selection:";
+print $menu;
 $continue= <STDIN>;
 $continue = inputsan ($continue);
 while ($continue) {
 	if ($continue==1){
 		print "You want to do lessons\n";
-		print "Enter another choice :";
-		$continue=<STDIN>;
-		$continue=inputsan($continue);
+		#print "Enter another choice :";
+		#$continue=<STDIN>;
+		#$continue=inputsan($continue);
+		lessons();
 	}
 	elsif ($continue==2) {
 		print "You want to play the game \n";
-		print "Enter a anther choice :";
+		print "Enter another choice 2:";
 		$continue=<STDIN>;
 		$continue = inputsan($continue);
 	
@@ -26,15 +27,20 @@ while ($continue) {
 
 	
 	elsif ($continue==3){
-		print "you chose exit, good bye!\n";
+		print "You chose exit, good bye!\n";
 		last;
 	}
 	elsif ($continue==42) {
 		print "We are still searching for the question to that answer \n";
 		last;
 	}
+	elsif ($continue==99) {
+		print $menu;
+		$continue=<STDIN>;
+		$continue = inputsan($continue);
+	}
 	else {
-		print "enter a valid selection:";
+		print "Please enter a valid selection:";
 		$continue = <STDIN>;
 		$continue = inputsan($continue);
 	}
@@ -51,3 +57,25 @@ sub inputsan {
 	}
 	return $selection;
 }
+
+
+sub lessons {
+	my $lessonno;
+print<<EOF;
+	Select lesson number to start :
+	[1]Basics (Numbers, Digits)
+	[2]Repititions
+	[3]Starting and Ending
+	[4]Special Characters
+	[5]Capturing and backrefes
+	[6]GO TO MENU
+	
+EOF
+	print "Give your choice :";
+	$lessonno=<STDIN>;
+	chomp $lessonno;
+	if ($lessonno == 6){$continue = 99;}
+	print "you chose : $lessonno\n"
+	}
+
+	
