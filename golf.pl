@@ -8,24 +8,19 @@ my (@wordlist,@nomatch,@scores,$continue,$state);
 
 print "\n\nHello Choose One:\n\n[1]Lessons\n[2]Game\n[3]Exit\n\nPlease Enter a Selection:";
 $continue= <STDIN>;
-
+$continue = inputsan ($continue);
 while ($continue) {
-	print "while entry : $continue";
 	if ($continue==1){
 		print "You want to do lessons\n";
-		print "Enter another choice 1:";
+		print "Enter another choice :";
 		$continue=<STDIN>;
-		print "why is this not prining\n";
-		print "input from stid : $continue\n";
-		$state = inputsan (chomp($continue));
-		$continue = $state;
-		print "level 1 complete";
+		$continue=inputsan($continue);
 	}
 	elsif ($continue==2) {
-		print "You want to play the game \n$continue\n";
-		print "Enter a anther choice 2 :";
+		print "You want to play the game \n";
+		print "Enter a anther choice :";
 		$continue=<STDIN>;
-		$continue = inputsan($continue);print $continue;
+		$continue = inputsan($continue);
 	
 	}
 
@@ -35,24 +30,24 @@ while ($continue) {
 		last;
 	}
 	elsif ($continue==42) {
-		print "WE are still searching for the question to that answer \n";
+		print "We are still searching for the question to that answer \n";
 		last;
 	}
 	else {
 		print "enter a valid selection:";
 		$continue = <STDIN>;
-		$continue = inputsan(chomp($continue));
+		$continue = inputsan($continue);
 	}
 }
 
 
 sub inputsan {
-	my $selection = @_[0];
-	print join(",", @_);
+	my $selection = $_[0];
 	chomp $selection;
-	if($selection !~ /\d{2}/) {
+	if($selection !~ /\d{1,2}/) {
 		print "Please enter only a 2 digit number :";
        		$selection= <STDIN>;
- 		return $selection;		
-}
+ 		inputsan($selection);		
+	}
+	return $selection;
 }
