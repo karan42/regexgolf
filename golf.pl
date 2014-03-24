@@ -44,7 +44,7 @@ while ($continue) {
 sub inputsan {
 	my $selection = $_[0];
 	chomp $selection;
-	if($selection !~ /\d{1,2}/) {
+	if($selection !~ /^\d{1,2}$/) {
 		print "Please enter only a 2 digit number :";
        		$selection= <STDIN>;
  		inputsan($selection);		
